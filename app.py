@@ -1,6 +1,7 @@
 import argparse
 import sys
 
+
 class AquaCli:
     def __init__(self, goal=2000):
         self.goal = goal
@@ -8,18 +9,24 @@ class AquaCli:
 
     def add_water(self, amount):
         if amount <= 0:
-            raise ValueError("A quantidade de água deve ser maior que zero.")
+            raise ValueError("A quantidade deve ser maior que zero.")
         self.total_water += amount
         return self.total_water
 
     def check_status(self):
         if self.total_water >= self.goal:
-            return "Parabéns! Você atingiu sua meta diária de hidratação!"
-        return f"Você bebeu {self.total_water}ml. Faltam {self.goal - self.total_water}ml."
+            return "Parabéns! Você atingiu sua meta diária!"
+        falta = self.goal - self.total_water
+        return f"Você bebeu {self.total_water}ml. Faltam {falta}ml."
+
 
 def main():
-    parser = argparse.ArgumentParser(description="AquaCli - Monitor de Hidratação")
-    parser.add_argument('--add', type=int, help="Adiciona água em ml (ex: --add 500)")
+    parser = argparse.ArgumentParser(
+        description="AquaCli - Monitor de Hidratação"
+    )
+    parser.add_argument(
+        '--add', type=int, help="Adiciona água em ml (ex: --add 500)"
+    )
     args = parser.parse_args()
 
     tracker = AquaCli()
@@ -35,5 +42,7 @@ def main():
     else:
         parser.print_help()
 
+
 if __name__ == "__main__":
     main()
+    
