@@ -19,4 +19,3 @@ def test_check_status_goal_reached():
     tracker.add_water(2000)
     msg = "Parabéns! Você atingiu sua meta diária!"
     assert tracker.check_status() == msg
-
