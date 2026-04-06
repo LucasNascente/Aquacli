@@ -1,8 +1,6 @@
 # AquaCli 💧
 **Versão:** 1.0.0
 
-![Build Status](https://github.com/SEU-USUARIO/SEU-REPOSITORIO/actions/workflows/ci.yml/badge.svg)
-
 ## 🎯 O Problema
 Muitas pessoas, especialmente idosos e trabalhadores com rotinas intensas, esquecem de beber água durante o dia. A desidratação crônica pode causar dores de cabeça, fadiga e problemas renais graves. 
 
