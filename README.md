@@ -1,4 +1,5 @@
 # AquaCli 💧
+Deploy / Link Público: [Acesse o projeto aqui](https://replit.com/@LuRomance/Aquacli)
 **Versão:** 1.0.0
 
 ## 🎯 O Problema
