@@ -23,7 +23,10 @@ class AquaCli:
 
 def buscar_temperatura_local(cidade, api_key):
     """Faz uma requisição HTTP GET para a OpenWeather API."""
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={api_key}&units=metric"
+    url = (
+        f"http://api.openweathermap.org/data/2.5/weather"
+        f"?q={cidade}&appid={api_key}&units=metric"
+    )
     try:
         response = requests.get(url, timeout=5)
         response.raise_for_status()
@@ -35,7 +38,7 @@ def buscar_temperatura_local(cidade, api_key):
 
 
 def ajustar_meta_agua(temperatura):
-    """Se a temperatura for igual ou superior a 30°C, adiciona 500ml à meta."""
+    """Se a temperatura for igual ou superior a 30°C, adiciona 500ml."""
     meta_padrao = 2000
     if temperatura is not None and temperatura >= 30.0:
         print(f"Está calor ({temperatura}°C)! Sua meta aumentou para 2500ml.")
@@ -52,7 +55,16 @@ def main():
     )
     args = parser.parse_args()
 
-    tracker = AquaCli()
+    # Informações fixas da API (Cidade e Key)
+    api_key = "ea36329ff03bc14ec48c68b5698edca6"
+    cidade = "Brasilia"
+
+    # Busca a temperatura e define a nova meta antes de iniciar o app
+    temperatura_atual = buscar_temperatura_local(cidade, api_key)
+    meta_dinamica = ajustar_meta_agua(temperatura_atual)
+
+    # Inicia o tracker já com a meta dinâmica aplicada
+    tracker = AquaCli(goal=meta_dinamica)
 
     if args.add:
         try:
