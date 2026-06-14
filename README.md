@@ -25,3 +25,6 @@ O **AquaCli** é uma aplicação simples via interface de linha de comando (CLI)
 Para garantir a qualidade do código, utilize os comandos abaixo:
 - **Linting:** `flake8 app.py test_app.py`
 - **Testes:** `pytest test_app.py`
+
+### Lucas Nascente, Henrique Chaves e Victor Augusto
+Versão com persistência de dados utilizando Supabase (PostgresSQL).
