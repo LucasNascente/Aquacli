@@ -1,6 +1,7 @@
 import argparse
 import sys
 import requests
+from database import supabase
 
 
 class AquaCli:
@@ -45,6 +46,10 @@ def ajustar_meta_agua(temperatura):
         return meta_padrao + 500
     return meta_padrao
 
+def salvar_agua(quantidade_ml):
+    dados = {"quantidade": quantidade_ml}
+    supabase.table("registro_agua").insert(dados).execute()
+    print (f" 💧 {quantidade_ml}ml salvos no banco de dados!")
 
 def main():
     parser = argparse.ArgumentParser(
