@@ -46,15 +46,18 @@ def ajustar_meta_agua(temperatura):
         return meta_padrao + 500
     return meta_padrao
 
+
 def salvar_agua(quantidade_ml):
     dados = {"quantidade": quantidade_ml}
     supabase.table("registro_agua").insert(dados).execute()
-    print (f" 💧 {quantidade_ml}ml salvos no banco de dados!")
+    print(f" 💧 {quantidade_ml}ml salvos no banco de dados!")
+
 
 def ver_total_do_dia():
     resposta = supabase.table("registro_agua").select("quantidade").execute()
     total = sum(item['quantidade']for item in resposta.data)
     print(f"Total acumulado no banco: {total}ml / 2000ml")
+    
 
 def main():
     parser = argparse.ArgumentParser(
