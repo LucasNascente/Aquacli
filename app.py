@@ -21,6 +21,7 @@ class AquaCli:
         falta = self.goal - self.total_water
         return f"Você bebeu {self.total_water}ml. Faltam {falta}ml."
 
+
 def buscar_temperatura_local(cidade, api_key):
     """Faz uma requisição HTTP GET para a OpenWeather API."""
     url = (
@@ -36,6 +37,7 @@ def buscar_temperatura_local(cidade, api_key):
         print("Aviso: Não foi possível obter o clima. Usando meta padrão.")
         return None
 
+
 def ajustar_meta_agua(temperatura):
     """Se a temperatura for igual ou superior a 30°C, adiciona 500ml."""
     meta_padrao = 2000
@@ -44,15 +46,18 @@ def ajustar_meta_agua(temperatura):
         return meta_padrao + 500
     return meta_padrao
 
+
 def salvar_agua(quantidade_ml):
     dados = {"quantidade": quantidade_ml}
     supabase.table("registro_agua").insert(dados).execute()
     print(f" 💧 {quantidade_ml}ml salvos no banco de dados!")
 
+
 def ver_total_do_dia():
     resposta = supabase.table("registro_agua").select("quantidade").execute()
     total = sum(item['quantidade']for item in resposta.data)
     print(f"Total acumulado no banco: {total}ml / 2000ml")
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -84,6 +89,7 @@ def main():
             sys.exit(1)
     else:
         parser.print_help()
+        
 
 if __name__ == "__main__":
     main()
